@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <parameter name="Browser" value="FireFox"/>
+    <parameter name="Server" value="https://www.baidu.com"/>
+    <parameter name="name1" value="关河九州"/>
+    <parameter name="age" value="25"/>
+    <test name="Java_WebTest">
+        <classes>
+            <!--添加测试类文件 -->
+            <class name="com.test.seleniumDemo.TestNG_Demo1"/>
+            <class name="com.test.seleniumDemo.TestNG_Demo2"/>
+            <!--class name="com.test.testngDemo.TestNG_Demo3"/-->
+            <class name="com.test.testngDemo.TestNG_Class"/>
+            <class name="com.test.testngDemo.TestNG_Parmeters"/>
+            <class name="com.test.testngDemo.TestNG_timeOut"/>
+            <class name="com.test.testngDemo.Annotation"/>
+        </classes>
+    </test>
+</suite>
+
+

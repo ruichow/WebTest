@@ -1,7 +1,7 @@
 package com.test.seleniumDemo;
 
 
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
 /**
  * @author 关河九州
@@ -17,16 +17,5 @@ public class TestNG_Demo1 {
     public void test2(){
         System.out.println("2=================");
     }
-    @Test
-    public void test3(){
-        System.out.println("3=================");
-    }
-    @Test
-    public void test4(){
-        System.out.println("4=================");
-    }
-    @Test
-    public void test5(){
-        System.out.println("5=================");
-    }
+
 }
