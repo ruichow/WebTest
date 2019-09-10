@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+
+<!--测试用例分组，可同时执行两个分组中的所有测试用例-->
+    <test name="Grouping">
+        <groups>
+            <define name="All">
+                <include name="人"></include>
+                <include name="动物"></include>
+            </define>
+            <run>
+                <include name="All"></include>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.test.testngDemo.TestNG_Grouping"></class>
+        </classes>
+    </test>
+</suite>
