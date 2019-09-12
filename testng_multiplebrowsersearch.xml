@@ -4,7 +4,7 @@
 <suite name="All Test Suite" parallel="tests" thread-count="3">
     <!--parallel=tests,表示使用不同的线程运行本文件中test标签定义的测试类
     thread-count=3表示同时开启运行测试脚本的线程数-->
-    
+
     <test name="FirefoxTest">
         <parameter name="browser" value="firefox"/>
         <classes>

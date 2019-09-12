@@ -10,13 +10,14 @@
 
         <classes>
             <!--添加测试类文件 -->
-            <class name="com.test.seleniumDemo.TestNG_Demo1"/>
-            <class name="com.test.seleniumDemo.TestNG_Demo2"/>
+            <!--class name="com.test.seleniumDemo.TestNG_Demo1"/-->
+            <!--class name="com.test.seleniumDemo.TestNG_Demo2"/-->
             <!--class name="com.test.testngDemo.TestNG_Demo3"/-->
             <class name="com.test.testngDemo.TestNG_Class"/>
             <class name="com.test.testngDemo.TestNG_Parmeters"/>
             <class name="com.test.testngDemo.TestNG_timeOut"/>
-            <class name="com.test.testngDemo.Annotation"/>
+            <!--class name="com.test.testngDemo.Annotation"/-->
+            <class name="com.test.testngDemo.TestNG_Assert"/>
         </classes>
     </test>
 </suite>

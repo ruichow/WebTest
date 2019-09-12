@@ -14,7 +14,7 @@
             </run>
         </groups>
         <classes>
-            <class name="com.test.testngDemo.TestNG_Grouping"></class>
+            <class name="com.test.testngDemo.TestNG_Grouping"/>
         </classes>
     </test>
 </suite>
