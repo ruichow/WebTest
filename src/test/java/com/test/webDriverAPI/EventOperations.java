@@ -11,6 +11,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @author：关河九州
  * @date：2019/9/17 15:50
@@ -96,6 +100,63 @@ public class EventOperations {
             e.printStackTrace();
         }
     }
+
+    @Test  //检查单选列表的选项文字是否符合期望
+    public void checkSelectText(){
+        driver.navigate().to(url1);
+        //点击注册
+        driver.findElement(By.xpath("/html/body/div[2]/div/div[1]/div/div/ul/li[3]/a[2]")).click();
+        //定位到下拉列表元素
+        Select dropList=new Select(driver.findElement(By.id("cardType")));
+        /*声明一个List对象存储下拉列表中所有出现的选项文字，并且通过泛型<String>限定List
+         *对象中的存储对象类型是String，Arrays.asList表示将一个数组转换为一个List对象
+         */
+        List<String> expect_options= Arrays.asList((new String[]{"中国居民身份证","港澳居民来往内地通行证","台湾居民来往大陆通行证","护照"}));
+        //声明一个新的List对象，用于存取从页面上获取的所有选项文字
+        List<String> actual_option=new ArrayList<String>();
+        //dropList.getOptions方法用于获取页面上下拉列表中的所有选项对象
+        //actual_option.add方法用于将实际打开页面中的每个选项添加到actual_option列表中
+        for (WebElement option:dropList.getOptions())
+            actual_option.add(option.getText());
+        //断言期望对象和实际对象的数组值是否完全一致
+        Assert.assertEquals(expect_options.toArray(),actual_option.toArray());
+    }
+
+    @Test  //操作单选框
+    public void operateRadio(){
+        driver.navigate().to(url1);
+        //点击注册
+        driver.findElement(By.xpath("/html/body/div[2]/div/div[1]/div/div/ul/li[3]/a[2]")).click();
+        //定位单选按钮对象-中国居民身份证
+        WebElement radioOption=driver.findElement(By.xpath("//*[@id=\'idTypeCode_second\']"));
+        //如果此单选按钮处于未被选中状态，调用click方法选中此单选按钮
+        if (!radioOption.isSelected())
+            radioOption.click();
+        //断言单选按钮是否处于选中状态
+        Assert.assertTrue(radioOption.isSelected());
+        //查找name属性为idTypeRadio的所有单选按钮对象，并存储到一个List容器中
+        List<WebElement> idTypeRadios=driver.findElements(By.name("idTypeRadio"));
+        /*
+        使用for循环对List容器中的每个单选按钮进行遍历，查找value属性值为H的单选按钮，如果查找到的此单选
+        按钮未处于选中状态，则调用click方法进行单击选择
+         */
+        for (WebElement idTypeRadio:idTypeRadios){
+            if (idTypeRadio.getAttribute("value").equals("H")){
+                if (!idTypeRadio.isSelected())
+                    idTypeRadio.click();
+                //断言单选按钮是否被选中
+                Assert.assertTrue(idTypeRadio.isSelected());
+                //选中后退出for循环
+                break;
+            }
+        }
+        try {
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+
 
 
     @AfterClass
