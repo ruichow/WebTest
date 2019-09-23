@@ -2,10 +2,9 @@ package com.test.webDriverAPI;
 
 
 
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -31,20 +30,29 @@ public class EventOperations1 {
         System.setProperty("webDriver.firefox.driver", "D:\\geckodriver.exe");
     }
 
-    @Test //对当前浏览器窗口进行截屏
-    public void captureScreenInCurrentWindow(){
-        //访问搜狗首页
-        driver.navigate().to(url);
-        //调用getScreenshotAS方法对当前浏览器打开的页面进行截图，保存到一个file对象中
-        File scrFile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        try{
-            //把file对象转换为一个保存在D盘下testing目录中的名为test.png的文件
-            FileUtils.copyFile(scrFile,new File("D:\\WebTest\\src\\test.png"));
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-
+    @Test //模拟键盘操作
+    public void clickKeys(){
+        driver.get(url);
+        Actions action=new Actions(driver);
+        action.keyDown(Keys.CONTROL); //按下Ctrl键
+        action.keyDown(Keys.SHIFT);  //按下Shift键
+        action.keyDown(Keys.ALT);  //按下alt键
+        action.keyUp(Keys.CONTROL);  //释放Ctrl键
+        action.keyUp(Keys.SHIFT);  //释放Shift键
+        action.keyUp(Keys.ALT); //释放alt键
+        //模拟键盘在搜索输入框中输入大写的字符
+        action.keyDown(Keys.SHIFT).sendKeys("abcdefg").perform();
     }
+
+    @Test  //模拟鼠标右键操作
+    public void rightClickMouse(){
+        driver.get(url);
+        //声明action对象
+        Actions action=new Actions(driver);
+        //调用action对象的contextClick方法，在输入框上单击鼠标右键
+        action.contextClick(driver.findElement(By.id("query"))).perform();
+    }
+
 
 
     @AfterClass
