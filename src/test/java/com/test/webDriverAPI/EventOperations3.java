@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -85,6 +86,31 @@ public class EventOperations3 {
         //调用ExpectedCoditions的elementToBeSelected方法判断中国居民身份证是否处于选中状态
         wait.until(ExpectedConditions.elementToBeSelected(select));
         System.out.println("下拉列表的选项中国居民身份证目前处于选中状态");
+    }
+
+    @Test  //自定义的显示等待
+    public void testExplicitWait(){
+        driver.get(url);
+        driver.findElement(By.id("query")).sendKeys("今天");
+        try {
+            //显式等待判断是否可以从页面获取文字输入框对象，如果可以获取则执行后续测试逻辑
+            WebElement textInputBox=(new WebDriverWait(driver,10))
+                    .until(new ExpectedCondition<WebElement>() {
+                        @Override
+                        public WebElement apply(WebDriver d){
+                            return d.findElement(By.id("query"));
+                        }
+                    });
+            //断言获取的页面输入框中是否包含“今年”关键字
+            Assert.assertEquals("今天",textInputBox.getAttribute("value"));
+
+
+
+        }catch (NoSuchElementException e){
+            //如果显式等待的条件未被满足，则使用fail函数将此测试用例设定为执行失败状态
+            Assert.fail("页面上的输入框元素未找到");
+            e.printStackTrace();
+        }
     }
 
 
