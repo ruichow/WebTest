@@ -20,7 +20,7 @@ import java.util.List;
 3、单击搜索按钮
 4、断言搜索结果中是否包含CSV文件中每行的第三个词
  */
-public class CsvUtil {
+public class CsvUtil2 {
     //读取CSV文件的静态方法，使用CSV文件的绝对文件路径作为函数参数
     public static Object[][] getTestData(String fileName) throws IOException{
         List<Object[]> records=new ArrayList<Object[]>();
